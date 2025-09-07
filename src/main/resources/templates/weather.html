@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeatherApp</title>
+  <link rel="stylesheet" th:href="@{/css/weather.css}">
+</head>
+<body>
+  <main id="container">
+    <h1>Weather Report</h1>
+
+    <img class="icon" th:if="${icon}" th:src="${icon}" alt="Weather icon"/>
+
+    <p class="city" th:text="'Hello from ' + ${city}">Hello from City</p>
+    <p class="desc" th:text="'Today is ' + ${description}">Today is Sunny</p>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="label">Temperature</span>
+        <span class="value" th:text="${temperature} + ' °C'">20 °C</span>
+      </div>
+      <div class="stat">
+        <span class="label">Feels like</span>
+        <span class="value" th:text="${feelslike} + ' °C'">19 °C</span>
+      </div>
+    </div>
+
+    <form class="search" th:action="@{/weather}" method="get">
+      <input name="city" placeholder="Search another city…" required>
+      <button type="submit">Search</button>
+    </form>
+
+    <a class="home" th:href="@{/}">↩ Back to Home</a>
+  </main>
+</body>
+</html>
